@@ -106,7 +106,7 @@ El proyecto está diseñado para ser completamente reproducible:
 Para ejecutar el análisis:
 
 ```r
-source("analysis_basilea_iii.R")
+source("Análisis_Basilea_III.R")
 ```
 
 Para generar presentación:
