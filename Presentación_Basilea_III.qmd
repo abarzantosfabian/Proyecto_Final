@@ -91,7 +91,7 @@ suppressPackageStartupMessages({
 })
 
 options(kableExtra.auto_format = FALSE, OutDec = ",")
-source("analysis_basilea_iii.R", encoding = "UTF-8")
+source("Analisis_Basilea_III.R", encoding = "UTF-8")
 
 # Limpiar caracteres Unicode problemáticos para pdflatex
 clean_latex_text <- function(x) {
@@ -268,7 +268,7 @@ knitr::opts_chunk$set(
 ## Propósito, Usuarios y KPIs
 
 ```{=tex}
-{\small
+{\footnotesize
 \textbf{Propósito y usuarios}
 \begin{itemize}
   \item Automatizar la evaluación de impacto de Basilea III sobre colocaciones bancarias en Chile mediante un pipeline reproducible y auditable en R + Quarto.
@@ -278,9 +278,9 @@ knitr::opts_chunk$set(
 \vspace{0.1em}
 \textbf{Entradas $\to$ Procesamiento $\to$ Salidas}
 \begin{itemize}
-  \item \textbf{Entradas}: \texttt{Working\_Data.RData}, umbrales CMF por banco/año, parámetros (\texttt{SEED\_KMEANS}, \texttt{B\_BOOT}).
-  \item \textbf{Procesamiento}: holgura regulatoria $\to$ K-Means 2 etapas $\to$ bootstrap $\to$ DiD escalonado con FE de doble vía.
-  \item \textbf{Salidas}: tablas y figuras embebidas en presentación Beamer generada vía \texttt{quarto render}.
+  \item \textbf{Entradas}: \texttt{Data simulada}, umbrales CMF por banco/año, parámetros (\texttt{SEED\_KMEANS}, \texttt{B\_BOOT}).
+  \item \textbf{Procesamiento}: Holgura regulatoria $\to$ K-Means 2 etapas $\to$ Bootstrap $\to$ DiD escalonado con FE de doble vía.
+  \item \textbf{Salidas}: Tablas y Figuras embebidas en presentación Beamer generada vía \texttt{quarto render}.
 \end{itemize}
 
 \vspace{0.1em}
@@ -288,7 +288,7 @@ knitr::opts_chunk$set(
 \begin{itemize}
   \item Cobertura del panel: $N_{\text{bancos}} \times T_{\text{meses}}$ sin NA en variables clave.
   \item Estabilidad clustering: \% de bancos con $P(\text{más expuesto}) \geq 0{,}90$ o $\leq 0{,}10$.
-  \item Robustez DiD: fracción bootstrap con mismo signo $\geq 90\%$.
+  \item Robustez DiD: Fracción bootstrap con mismo signo $\geq 90\%$.
 \end{itemize}
 }
 ```
@@ -470,7 +470,7 @@ tabla_descriptiva <- function(panel_df, hito_2,
 
     lines <- c(lines,
       "\\hline",
-      sprintf("\\multicolumn{%d}{l}{\\tiny Promedios simples. Tratamiento: Holgura de Capital $<$ mediana pre-reforma.}\\\\", nc),
+      sprintf("\\multicolumn{%d}{c}{\\tiny Promedios simples. Tratamiento: Holgura de Capital $<$ mediana pre-reforma.}\\\\", nc),
       "\\hline",
       "\\end{tabular}",
       "\\end{center}"
@@ -573,7 +573,7 @@ fig5 + theme(plot.title = element_text(size = 9.5, face = "plain", color = "#5B2
 tabla_beamer(
   df        = tabla_boot_did,
   col_names = c("Indicador", "Valor"),
-  align     = c("l", "c"),
+  align     = c("c", "c"),
   footnote  = "Bootstrap temporal con B = 499 replicas. Clasificacion K-Means en 2 etapas re-estimada en cada replica.",
   font_size = "\\scriptsize",
   outfile   = "tabla_bootdid_out.tex"
@@ -616,9 +616,5 @@ tabla_beamer(
 \vspace{0.7em}
 {\large Preguntas y comentarios}
 
-\vspace{1em}
-{\small \color{cmfGray}
-\texttt{analysis\_basilea\_iii.R} $\;\cdot\;$ \texttt{presentacion\_basilea\_iii.qmd}
-}
 \vfill
 ```
