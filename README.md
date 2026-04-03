@@ -112,7 +112,7 @@ source("Análisis_Basilea_III.R")
 Para generar presentación:
 
 ```bash
-quarto render presentacion.qmd
+quarto render Presentación_Basilea_III.qmd
 ```
 
 ---
